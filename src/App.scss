@@ -1,0 +1,182 @@
+@import "~antd/dist/antd.css";
+@import "easymde/dist/easymde.min.css";
+
+//variables
+$main-color: #f9f9f9;
+$second-color: #e5e5e5;
+$highlight-color: #ffd52e;
+
+//reset
+* {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+li,
+dl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+//global styles
+.app {
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  background-color: #e5e5e5;
+  color: black;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+//side bar
+.app-sidebar {
+  background-color: #f9f9f9;
+  height: 100vh;
+  width: 25%;
+  border-right: 0.5px solid $second-color;
+
+  &__header {
+    display: flex;
+    height: 50px;
+    border-bottom: 0.5px solid $second-color;
+    justify-content: space-between;
+  }
+
+  &__search-box {
+    height: 100%;
+    width: 90%;
+  }
+
+  &__btn {
+    border-radius: 5px;
+    align-self: center;
+    margin-right: 10px;
+    &:hover {
+      color: $highlight-color;
+    }
+  }
+
+  &__notes-list {
+    height: 100%;
+  }
+
+  &__note {
+    margin: 5px;
+    height: 75px;
+    padding: 10px;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: $second-color;
+      cursor: pointer;
+    }
+
+    &_active {
+      background-color: $highlight-color;
+      &:hover {
+        background-color: $highlight-color;
+      }
+    }
+
+    .wrapper {
+      align-items: center;
+    }
+  }
+
+  &__note-title {
+    font-weight: bolder;
+    font-size: 18px;
+  }
+
+  &__note-date {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+
+  &__note-preview {
+    font-size: 12px;
+    color: rgb(132, 132, 132);
+  }
+}
+
+//main
+.app-main {
+  height: 100vh;
+  width: 75%;
+  background-color: $main-color;
+  &__header {
+    height: 50px;
+    border-bottom: 0.5px solid $second-color;
+    display: flex;
+  }
+
+  &__btn {
+    border-radius: 5px;
+    margin: 0 10px;
+    align-self: center;
+    &:hover {
+      color: $highlight-color;
+    }
+  }
+
+  &__content {
+    padding: 20px;
+    height: 100vh;
+  }
+}
+
+.app-default {
+  height: 100vh;
+  width: 75%;
+  background-color: $main-color;
+  display: flex;
+  &__text {
+    font-size: 60px;
+    color: $second-color;
+    margin: auto;
+  }
+}
