@@ -2,18 +2,13 @@ import { Button, Tooltip } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { marked } from "marked";
 import SimpleMdeReact from "react-simplemde-editor";
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 
 const Workspace = (props) => {
-  const [editing, setEditing] = useState(false);
-
-  const noteContent = marked.parse(props.activeNote.value);
+  const noteContent = marked.parse(props.activeNote ? props.activeNote.value : '');
 
   const toggleEditing = () => {
-    // if (editing) {
-    //   props.noteEdited();
-    // }
-    setEditing((editing) => !editing);
+    props.setEditing((editing) => !editing);
   };
 
   const options = useMemo(() => {
@@ -28,13 +23,13 @@ const Workspace = (props) => {
     <div className="app-main">
       <div className="app-main__header">
         <Button type="text" className="app-main__btn" onClick={toggleEditing}>
-          {editing ? "Done" : "Edit"}
+          {props.editing ? "Done" : "Edit"}
         </Button>
         <Tooltip title="Delete">
           <Button type="text" icon={<DeleteOutlined />} className="app-main__btn" onClick={props.deleteNote}/>
         </Tooltip>
       </div>
-      {editing ? (
+      {props.editing ? (
         <SimpleMdeReact
           value={props.activeNote.value}
           onChange={props.editNote}
