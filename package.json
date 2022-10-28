@@ -2,6 +2,7 @@
   "name": "notes-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://saypa95.github.io/NotesApp",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -12,6 +13,7 @@
     "dexie": "^3.2.2",
     "dexie-react-hooks": "^1.1.1",
     "easymde": "^2.18.0",
+    "gh-pages": "^4.0.0",
     "marked": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -21,6 +23,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
