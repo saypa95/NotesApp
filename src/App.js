@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
-import {Modal} from 'antd';
+import { Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import Sidebar from "./components/sidebar/Sidebar";
 import Workspace from "./components/workspace/Workspace";
 import DefaultLayout from "./components/defaultLayout/DefaultLayout";
 import db from "./db";
 import "./App.scss";
+import context from "./context";
 
 const { confirm } = Modal;
+
+const { Provider } = context;
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -52,11 +55,10 @@ function App() {
         setActiveNote(null);
       },
       onCancel() {
-        return 
+        return;
       },
     });
   };
-
 
   const editNote = async (value) => {
     await db.notes.update(activeNote, { value, date: Date.now() });
@@ -67,22 +69,36 @@ function App() {
     return notes.find((note) => note.id === activeNote);
   };
 
+  const stateData = {
+    notes,
+    activeNote,
+    setActiveNote,
+    activeNoteItem: getActiveNote(),
+    addNote,
+    editing,
+    setEditing,
+    deleteNote,
+    editNote,
+  };
+
   return (
-    <div className="app">
-      <Sidebar addNote={addNote} activeNote={activeNote} setActiveNote={setActiveNote} notes={notes} />
-      {activeNote ? (
-        <Workspace
-          editing={editing}
-          setEditing={setEditing}
-          deleteNote={deleteNote}
-          activeNote={getActiveNote()}
-          notes={notes}
-          editNote={editNote}
-        />
-      ) : (
-        <DefaultLayout />
-      )}
-    </div>
+    <Provider value={stateData}>
+      <div className="app">
+        <Sidebar addNote={addNote} activeNote={activeNote} setActiveNote={setActiveNote} notes={notes} />
+        {activeNote ? (
+          <Workspace
+            editing={editing}
+            setEditing={setEditing}
+            deleteNote={deleteNote}
+            activeNote={getActiveNote()}
+            notes={notes}
+            editNote={editNote}
+          />
+        ) : (
+          <DefaultLayout />
+        )}
+      </div>
+    </Provider>
   );
 }
 

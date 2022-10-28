@@ -3,12 +3,15 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { marked } from "marked";
 import SimpleMdeReact from "react-simplemde-editor";
 import { useMemo } from "react";
+import { useContext } from "react";
+import context from "../../context";
 
-const Workspace = (props) => {
-  const noteContent = marked.parse(props.activeNote ? props.activeNote.value : '');
+const Workspace = () => {
+  const {editing, setEditing, deleteNote, activeNoteItem, editNote} = useContext(context);
+  const noteContent = marked.parse(activeNoteItem ? activeNoteItem.value : '');
 
   const toggleEditing = () => {
-    props.setEditing((editing) => !editing);
+    setEditing((editing) => !editing);
   };
 
   const options = useMemo(() => {
@@ -23,16 +26,16 @@ const Workspace = (props) => {
     <div className="app-main">
       <div className="app-main__header">
         <Button type="text" className="app-main__btn" onClick={toggleEditing}>
-          {props.editing ? "Done" : "Edit"}
+          {editing ? "Done" : "Edit"}
         </Button>
         <Tooltip title="Delete">
-          <Button type="text" icon={<DeleteOutlined />} className="app-main__btn" onClick={props.deleteNote}/>
+          <Button type="text" icon={<DeleteOutlined />} className="app-main__btn" onClick={deleteNote}/>
         </Tooltip>
       </div>
-      {props.editing ? (
+      {editing ? (
         <SimpleMdeReact
-          value={props.activeNote.value}
-          onChange={props.editNote}
+          value={activeNoteItem.value}
+          onChange={editNote}
           className="app-main__content"
           options={options}
         />
