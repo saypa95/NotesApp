@@ -1,13 +1,14 @@
+import { useMemo, useContext } from "react";
+import SimpleMdeReact from "react-simplemde-editor";
 import { Button, Tooltip } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { marked } from "marked";
-import SimpleMdeReact from "react-simplemde-editor";
-import { useMemo } from "react";
-import { useContext } from "react";
+
 import context from "../../context";
 
 const Workspace = () => {
   const {editing, setEditing, deleteNote, activeNoteItem, editNote} = useContext(context);
+  
   const noteContent = marked.parse(activeNoteItem ? activeNoteItem.value : '');
 
   const toggleEditing = () => {

@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+
 import Sidebar from "./components/sidebar/Sidebar";
 import Workspace from "./components/workspace/Workspace";
 import DefaultLayout from "./components/defaultLayout/DefaultLayout";
 import db from "./db";
-import "./App.scss";
 import context from "./context";
 
-const { confirm } = Modal;
+import "./App.scss";
 
+const { confirm } = Modal;
 const { Provider } = context;
 
 function App() {
