@@ -17,6 +17,7 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [activeNote, setActiveNote] = useState(null);
   const [editing, setEditing] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     updateNotes();
@@ -80,6 +81,8 @@ function App() {
     setEditing,
     deleteNote,
     editNote,
+    searchValue,
+    setSearchValue
   };
 
   return (
