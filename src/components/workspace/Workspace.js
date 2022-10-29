@@ -8,7 +8,7 @@ import context from "../../context";
 
 const Workspace = () => {
   const {editing, setEditing, deleteNote, activeNoteItem, editNote} = useContext(context);
-  
+
   const noteContent = marked.parse(activeNoteItem ? activeNoteItem.value : '');
 
   const toggleEditing = () => {

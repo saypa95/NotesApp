@@ -85,19 +85,8 @@ function App() {
   return (
     <Provider value={stateData}>
       <div className="app">
-        <Sidebar addNote={addNote} activeNote={activeNote} setActiveNote={setActiveNote} notes={notes} />
-        {activeNote ? (
-          <Workspace
-            editing={editing}
-            setEditing={setEditing}
-            deleteNote={deleteNote}
-            activeNote={getActiveNote()}
-            notes={notes}
-            editNote={editNote}
-          />
-        ) : (
-          <DefaultLayout />
-        )}
+        <Sidebar />
+        {activeNote ? <Workspace /> : <DefaultLayout />}
       </div>
     </Provider>
   );
